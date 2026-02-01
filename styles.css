@@ -194,33 +194,6 @@
 	overflow: hidden;
 }
 
-.claude-terminal-toolbar {
-	display: flex;
-	align-items: center;
-	gap: 4px;
-	padding: 4px 8px;
-	border-bottom: 1px solid var(--background-modifier-border);
-	flex-shrink: 0;
-}
-
-.claude-terminal-toolbar-btn {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: transparent;
-	border: none;
-	border-radius: var(--radius-s);
-	color: var(--text-muted);
-	cursor: pointer;
-	padding: 4px;
-	width: 28px;
-	height: 28px;
-}
-
-.claude-terminal-toolbar-btn:hover {
-	background: var(--background-modifier-hover);
-	color: var(--text-normal);
-}
 
 .claude-terminal-xterm {
 	flex: 1;

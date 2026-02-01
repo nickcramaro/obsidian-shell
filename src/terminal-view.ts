@@ -1,4 +1,4 @@
-import { ItemView, WorkspaceLeaf, setIcon } from "obsidian";
+import { ItemView, WorkspaceLeaf } from "obsidian";
 import { Terminal, IDisposable } from "@xterm/xterm";
 import { FitAddon } from "@xterm/addon-fit";
 import { Unicode11Addon } from "@xterm/addon-unicode11";
@@ -39,24 +39,6 @@ export class TerminalView extends ItemView {
 		container.empty();
 		container.addClass("claude-terminal-container");
 
-		// Toolbar
-		const toolbar = container.createDiv({ cls: "claude-terminal-toolbar" });
-
-		const restartBtn = toolbar.createEl("button", {
-			cls: "claude-terminal-toolbar-btn",
-			attr: { "aria-label": "Restart Claude" },
-		});
-		setIcon(restartBtn, "rotate-ccw");
-		restartBtn.addEventListener("click", () => this.restart());
-
-		const addNoteBtn = toolbar.createEl("button", {
-			cls: "claude-terminal-toolbar-btn",
-			attr: { "aria-label": "Add current note" },
-		});
-		setIcon(addNoteBtn, "file-plus");
-		addNoteBtn.addEventListener("click", () => this.plugin.addCurrentNote());
-
-		// Terminal container
 		this.terminalContainer = container.createDiv({ cls: "claude-terminal-xterm" });
 
 		this.initTerminal();
