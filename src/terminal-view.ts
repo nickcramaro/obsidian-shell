@@ -41,6 +41,34 @@ export class TerminalView extends ItemView {
 
 		this.terminalContainer = container.createDiv({ cls: "claude-terminal-xterm" });
 
+		// Drag-and-drop: accept files dragged from file explorer
+		this.terminalContainer.addEventListener("dragover", (e) => {
+			e.preventDefault();
+			e.stopPropagation();
+			this.terminalContainer?.addClass("claude-terminal-drop-active");
+		});
+
+		this.terminalContainer.addEventListener("dragleave", () => {
+			this.terminalContainer?.removeClass("claude-terminal-drop-active");
+		});
+
+		this.terminalContainer.addEventListener("drop", (e) => {
+			e.preventDefault();
+			e.stopPropagation();
+			this.terminalContainer?.removeClass("claude-terminal-drop-active");
+
+			// Obsidian encodes dragged files in the dataTransfer
+			const files = (this.app as any).dragManager?.draggable?.files as string[] | undefined;
+			const dragData = e.dataTransfer?.getData("text/plain");
+
+			if (files && files.length > 0) {
+				this.plugin.addFiles(files);
+			} else if (dragData) {
+				// Fallback: treat plain text drag data as a file path
+				this.plugin.addFiles([dragData]);
+			}
+		});
+
 		this.initTerminal();
 	}
 
