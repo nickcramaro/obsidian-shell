@@ -1,0 +1,61 @@
+/* xterm.js injects its own base styles via JS when terminal.open() is called */
+
+.claude-terminal-container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	overflow: hidden;
+}
+
+.claude-terminal-toolbar {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	padding: 4px 8px;
+	border-bottom: 1px solid var(--background-modifier-border);
+	flex-shrink: 0;
+}
+
+.claude-terminal-toolbar-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: transparent;
+	border: none;
+	border-radius: var(--radius-s);
+	color: var(--text-muted);
+	cursor: pointer;
+	padding: 4px;
+	width: 28px;
+	height: 28px;
+}
+
+.claude-terminal-toolbar-btn:hover {
+	background: var(--background-modifier-hover);
+	color: var(--text-normal);
+}
+
+.claude-terminal-xterm {
+	flex: 1;
+	overflow: hidden;
+	padding: 4px;
+}
+
+/* Ensure xterm.js canvas fills the container */
+.claude-terminal-xterm .xterm {
+	height: 100%;
+}
+
+.claude-terminal-xterm .xterm-viewport {
+	overflow-y: auto !important;
+}
+
+/* Scrollbar styling to match Obsidian */
+.claude-terminal-xterm .xterm-viewport::-webkit-scrollbar {
+	width: 6px;
+}
+
+.claude-terminal-xterm .xterm-viewport::-webkit-scrollbar-thumb {
+	background: var(--scrollbar-thumb-bg);
+	border-radius: 3px;
+}
