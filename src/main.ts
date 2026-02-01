@@ -1,10 +1,15 @@
-import { Plugin, WorkspaceLeaf } from "obsidian";
+import { Plugin, WorkspaceLeaf, normalizePath } from "obsidian";
 import { VIEW_TYPE_TERMINAL, DEFAULT_SETTINGS, ClaudeTerminalSettings } from "./constants";
 import { TerminalView } from "./terminal-view";
 import { ClaudeTerminalSettingTab } from "./settings";
 
 export default class ClaudeTerminalPlugin extends Plugin {
 	settings: ClaudeTerminalSettings = DEFAULT_SETTINGS;
+
+	/** Absolute path to this plugin's install directory */
+	get pluginDir(): string {
+		return (this.app.vault.adapter as any).basePath + "/.obsidian/plugins/" + this.manifest.id;
+	}
 
 	async onload() {
 		await this.loadSettings();

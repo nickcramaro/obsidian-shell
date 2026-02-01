@@ -9,22 +9,27 @@
 		"rebuild-pty": "electron-rebuild -f -w node-pty -v 37.10.2",
 		"postinstall": "npm run rebuild-pty"
 	},
-	"keywords": ["obsidian", "claude", "terminal"],
+	"keywords": [
+		"obsidian",
+		"claude",
+		"terminal"
+	],
 	"license": "MIT",
 	"devDependencies": {
+		"@electron/rebuild": "^3.7.0",
 		"@types/node": "^20.11.0",
 		"builtin-modules": "^3.3.0",
-		"esbuild": "^0.20.0",
-		"@electron/rebuild": "^3.7.0",
 		"electron-rebuild": "^3.2.9",
+		"esbuild": "^0.20.0",
 		"obsidian": "^1.5.7",
-		"typescript": "^5.3.0",
-		"tslib": "^2.6.0"
+		"tslib": "^2.6.0",
+		"typescript": "^5.3.0"
 	},
 	"dependencies": {
-		"@xterm/xterm": "^5.5.0",
 		"@xterm/addon-fit": "^0.10.0",
+		"@xterm/addon-unicode11": "^0.9.0",
 		"@xterm/addon-web-links": "^0.11.0",
+		"@xterm/xterm": "^5.5.0",
 		"node-pty": "^1.0.0"
 	}
 }

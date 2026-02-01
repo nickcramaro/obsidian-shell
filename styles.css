@@ -1,5 +1,22 @@
 /* xterm.js injects its own base styles via JS when terminal.open() is called */
 
+/* Hide the textarea resize handle that xterm.js uses for input capture */
+.claude-terminal-xterm .xterm-helper-textarea {
+	resize: none !important;
+	opacity: 0 !important;
+	pointer-events: none;
+}
+
+/* Ensure the view leaf container clips everything */
+.workspace-leaf-content[data-type="claude-code-terminal-view"] {
+	overflow: hidden;
+}
+
+.workspace-leaf-content[data-type="claude-code-terminal-view"] .view-content {
+	overflow: hidden;
+	padding: 0;
+}
+
 .claude-terminal-container {
 	display: flex;
 	flex-direction: column;
@@ -37,13 +54,20 @@
 
 .claude-terminal-xterm {
 	flex: 1;
+	min-height: 0;
 	overflow: hidden;
 	padding: 4px;
+	position: relative;
 }
 
 /* Ensure xterm.js canvas fills the container */
 .claude-terminal-xterm .xterm {
 	height: 100%;
+	overflow: hidden;
+}
+
+.claude-terminal-xterm .xterm-screen {
+	overflow: hidden;
 }
 
 .claude-terminal-xterm .xterm-viewport {
