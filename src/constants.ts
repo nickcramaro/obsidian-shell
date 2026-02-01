@@ -5,6 +5,7 @@ export const DEFAULT_SETTINGS: ClaudeTerminalSettings = {
 	shellPath: "",
 	fontSize: 14,
 	autoLaunch: true,
+	focusTerminalOnContext: true,
 	theme: {
 		background: "",
 		foreground: "",
@@ -17,6 +18,7 @@ export interface ClaudeTerminalSettings {
 	shellPath: string;
 	fontSize: number;
 	autoLaunch: boolean;
+	focusTerminalOnContext: boolean;
 	theme: {
 		background: string;
 		foreground: string;

@@ -231,4 +231,8 @@ export class TerminalView extends ItemView {
 	sendToTerminal(command: string) {
 		this.ptyManager?.sendCommand(command);
 	}
+
+	focusTerminal() {
+		this.terminal?.focus();
+	}
 }

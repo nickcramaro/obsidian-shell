@@ -182,12 +182,19 @@ export default class ClaudeTerminalPlugin extends Plugin {
 		const view = this.getTerminalView();
 		if (view) {
 			cb(view);
+			if (this.settings.focusTerminalOnContext) {
+				this.activateView();
+				view.focusTerminal();
+			}
 			return;
 		}
 		this.activateView().then(() => {
 			setTimeout(() => {
 				const v = this.getTerminalView();
-				if (v) cb(v);
+				if (v) {
+					cb(v);
+					if (this.settings.focusTerminalOnContext) v.focusTerminal();
+				}
 			}, 1000);
 		});
 	}

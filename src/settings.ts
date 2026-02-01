@@ -65,6 +65,18 @@ export class ClaudeTerminalSettingTab extends PluginSettingTab {
 					})
 			);
 
+		new Setting(containerEl)
+			.setName("Focus terminal on context")
+			.setDesc("Bring focus to the terminal when sending files or selections to Claude")
+			.addToggle((toggle) =>
+				toggle
+					.setValue(this.plugin.settings.focusTerminalOnContext)
+					.onChange(async (value) => {
+						this.plugin.settings.focusTerminalOnContext = value;
+						await this.plugin.saveSettings();
+					})
+			);
+
 		containerEl.createEl("h3", { text: "Theme" });
 		containerEl.createEl("p", {
 			text: "Leave blank to auto-detect from Obsidian theme.",
