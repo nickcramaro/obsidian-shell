@@ -1,6 +1,6 @@
 {
-	"id": "obsidian-shell",
-	"name": "Obsidian Shell",
+	"id": "claude-shell",
+	"name": "Claude Shell",
 	"version": "0.1.0",
 	"minAppVersion": "1.5.0",
 	"description": "Embedded terminal with Claude Code in the sidebar",

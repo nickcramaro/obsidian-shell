@@ -1,5 +1,5 @@
 {
-	"name": "obsidian-shell",
+	"name": "claude-shell",
 	"version": "0.1.0",
 	"description": "Embedded terminal with Claude Code for Obsidian",
 	"main": "main.js",

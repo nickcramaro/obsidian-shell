@@ -34,7 +34,7 @@ export default class ClaudeTerminalPlugin extends Plugin {
 			callback: () => this.restartSession(),
 		});
 
-		this.addRibbonIcon("sparkles", "Obsidian Shell", () => this.activateView());
+		this.addRibbonIcon("sparkles", "Claude Shell", () => this.activateView());
 
 		this.addSettingTab(new ClaudeTerminalSettingTab(this.app, this));
 	}
