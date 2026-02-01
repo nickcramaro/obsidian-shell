@@ -31,7 +31,7 @@ export class TerminalView extends ItemView {
 	}
 
 	getIcon(): string {
-		return "terminal";
+		return "sparkles";
 	}
 
 	async onOpen() {
