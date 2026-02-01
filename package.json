@@ -1,7 +1,7 @@
 {
-	"name": "obsidian-claude-code",
+	"name": "obsidian-shell",
 	"version": "0.1.0",
-	"description": "Embedded Claude Code terminal for Obsidian",
+	"description": "Embedded terminal with Claude Code for Obsidian",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",

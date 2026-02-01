@@ -18,7 +18,7 @@ export default class ClaudeTerminalPlugin extends Plugin {
 
 		this.addCommand({
 			id: "open-terminal",
-			name: "Open Claude Code terminal",
+			name: "Open terminal",
 			callback: () => this.activateView(),
 		});
 
@@ -30,11 +30,11 @@ export default class ClaudeTerminalPlugin extends Plugin {
 
 		this.addCommand({
 			id: "restart-session",
-			name: "Restart Claude Code session",
+			name: "Restart session",
 			callback: () => this.restartSession(),
 		});
 
-		this.addRibbonIcon("terminal", "Claude Code", () => this.activateView());
+		this.addRibbonIcon("terminal", "Obsidian Shell", () => this.activateView());
 
 		this.addSettingTab(new ClaudeTerminalSettingTab(this.app, this));
 	}

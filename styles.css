@@ -178,11 +178,11 @@
  */
 
 /* Ensure the view leaf container clips everything */
-.workspace-leaf-content[data-type="claude-code-terminal-view"] {
+.workspace-leaf-content[data-type="obsidian-shell-view"] {
 	overflow: hidden;
 }
 
-.workspace-leaf-content[data-type="claude-code-terminal-view"] .view-content {
+.workspace-leaf-content[data-type="obsidian-shell-view"] .view-content {
 	overflow: hidden;
 	padding: 0;
 }

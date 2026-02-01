@@ -27,7 +27,7 @@ export class TerminalView extends ItemView {
 	}
 
 	getDisplayText(): string {
-		return "Claude Code";
+		return "Obsidian Shell";
 	}
 
 	getIcon(): string {

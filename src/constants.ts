@@ -1,4 +1,4 @@
-export const VIEW_TYPE_TERMINAL = "claude-code-terminal-view";
+export const VIEW_TYPE_TERMINAL = "obsidian-shell-view";
 
 export const DEFAULT_SETTINGS: ClaudeTerminalSettings = {
 	claudeFlags: "",
