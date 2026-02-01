@@ -25,21 +25,9 @@ export class PtyManager {
 
 		const shell = options.shellPath || this.detectShell();
 
-		// Build PATH that includes common locations for CLI tools.
-		// Obsidian's process.env.PATH often misses paths added in .zshrc/.bashrc.
-		const extraPaths = [
-			path.join(process.env.HOME || "", ".local", "bin"),
-			"/usr/local/bin",
-			"/opt/homebrew/bin",
-			"/opt/homebrew/sbin",
-			path.join(process.env.HOME || "", ".nvm", "versions", "node"),
-			path.join(process.env.HOME || "", ".npm-global", "bin"),
-			path.join(process.env.HOME || "", "bin"),
-		];
-		const currentPath = process.env.PATH || "/usr/bin:/bin";
-		const fullPath = [...extraPaths, ...currentPath.split(":")].filter(Boolean);
-		// Deduplicate while preserving order
-		const uniquePath = [...new Set(fullPath)].join(":");
+		// Obsidian's process.env.PATH is minimal (no .zshrc/.bashrc additions).
+		// Resolve the user's full PATH by asking their login shell.
+		const uniquePath = this.resolveUserPath();
 
 		const env = Object.assign({}, process.env, {
 			TERM: "xterm-256color",
@@ -127,6 +115,39 @@ export class PtyManager {
 
 	sendCommand(cmd: string) {
 		this.write(cmd + "\r");
+	}
+
+	/**
+	 * Get the user's full PATH by asking their login shell.
+	 * Falls back to a hardcoded list if the shell query fails.
+	 */
+	private resolveUserPath(): string {
+		const shell = this.detectShell();
+		try {
+			const { execSync } = require("child_process");
+			const result = execSync(`${shell} -l -i -c 'echo $PATH'`, {
+				timeout: 3000,
+				encoding: "utf-8",
+				env: { HOME: process.env.HOME, USER: process.env.USER },
+			}).trim();
+			if (result) return result;
+		} catch {
+			// Fall through to hardcoded paths
+		}
+
+		const home = process.env.HOME || "";
+		const extras = [
+			path.join(home, ".local", "bin"),
+			path.join(home, ".bun", "bin"),
+			"/usr/local/bin",
+			"/opt/homebrew/bin",
+			"/opt/homebrew/sbin",
+			path.join(home, ".nvm", "versions", "node"),
+			path.join(home, ".npm-global", "bin"),
+			path.join(home, "bin"),
+		];
+		const current = process.env.PATH || "/usr/bin:/bin";
+		return [...new Set([...extras, ...current.split(":")])].filter(Boolean).join(":");
 	}
 
 	private detectShell(): string {
