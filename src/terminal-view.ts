@@ -3,6 +3,7 @@ import { Terminal, IDisposable } from "@xterm/xterm";
 import { FitAddon } from "@xterm/addon-fit";
 import { Unicode11Addon } from "@xterm/addon-unicode11";
 import { WebLinksAddon } from "@xterm/addon-web-links";
+import { WebglAddon } from "@xterm/addon-webgl";
 import { VIEW_TYPE_TERMINAL } from "./constants";
 import { PtyManager } from "./pty-manager";
 import type ClaudeTerminalPlugin from "./main";
@@ -131,6 +132,15 @@ export class TerminalView extends ItemView {
 		this.terminal.loadAddon(new WebLinksAddon());
 
 		this.terminal.open(this.terminalContainer);
+
+		// Use GPU-accelerated WebGL renderer, fall back to canvas on failure
+		try {
+			const webglAddon = new WebglAddon();
+			webglAddon.onContextLoss(() => webglAddon.dispose());
+			this.terminal.loadAddon(webglAddon);
+		} catch {
+			// Canvas renderer remains active as fallback
+		}
 
 		// Track focus so the plugin knows which terminal was last active
 		this.focusDisposable = this.terminal.onData(() => {
