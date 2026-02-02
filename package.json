@@ -10,7 +10,8 @@
 		"test:watch": "vitest",
 		"test:coverage": "vitest run --coverage",
 		"rebuild-pty": "electron-rebuild -f -w node-pty -v 37.10.2",
-		"postinstall": "npm run rebuild-pty"
+		"postinstall": "npm run rebuild-pty",
+		"release": "bash scripts/release.sh"
 	},
 	"keywords": [
 		"obsidian",

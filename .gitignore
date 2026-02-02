@@ -26,3 +26,7 @@ Thumbs.db
 # npm
 npm-debug.log*
 *.tgz
+
+# Release artifacts
+.release-staging/
+claude-shell-*.zip

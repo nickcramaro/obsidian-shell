@@ -214,8 +214,9 @@ function requireNodePty(pluginDir: string) {
 	} catch (err) {
 		throw new Error(
 			`Failed to load node-pty from ${modulePath}. ` +
-			`It must be compiled for Obsidian's Electron version. ` +
-			`Run 'npm run postinstall' in the plugin directory. Original error: ${err}`
+			`The native binary must be present and compiled for Obsidian's Electron version. ` +
+			`Install from the GitHub release zip which includes prebuilt binaries: ` +
+			`https://github.com/nickcramaro/claude-shell/releases — Original error: ${err}`
 		);
 	}
 }
